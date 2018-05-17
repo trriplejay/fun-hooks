@@ -40,7 +40,7 @@ jobs:
             - cat $HOOK_META/version.json
             #- export response_url=$(shipctl get_resource_version_key warmup payload | jq '.response_url')
 
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "propertyBag.payload.response_url")
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - echo "$response_url"
             - sh respond.sh "engines online..."
     on_success:
