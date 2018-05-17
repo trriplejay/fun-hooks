@@ -33,6 +33,7 @@ jobs:
         switch: off
       - TASK:
           script:
+            - sudo apt-get install libssl-dev
             - pushd $(shipctl get_resource_state hook-repo)
             - HOOK_META=$(shipctl get_resource_meta warmup)
             - export response_url=$(shipctl get_resource_version_key warmup payload | jq '.response_url')
