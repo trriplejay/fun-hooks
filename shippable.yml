@@ -9,10 +9,6 @@ resources:
     versionTemplate:
       sourceName: trriplejay/fun-hooks
       branch: master
-      
-  - name: slack-creds
-    type: integration
-    integration: slack-keys
 
 ##############################################
 # The hooks. one per job.
@@ -21,7 +17,7 @@ resources:
     type: webhook
     versionTemplate:
       webhookKey: tCv4fhCogSqmyjmRgvuR
-      
+
   - name: warmup
     type: webhook
     versionTemplate:
@@ -38,9 +34,17 @@ jobs:
       - TASK:
           script:
             - pushd $(shipctl get_resource_state hook-repo)
-            - echo "machine is warm"
-            - sh respond.sh engines online
-        
+            - HOOK_META=$(shipctl get_resource_meta warmup)
+            - export response_url="$(shipctl get_json_value "$HOOK_META/version.json" "payload.response_url"
+            - sh respond.sh "engines online..."
+    on_success:
+      script:
+        - echo "machine is warm"
+    on_failure:
+      script:
+        - sh respond.sh "something went wrong!"
+
+
   - name: execute-translate
     type: runSh
     steps:
