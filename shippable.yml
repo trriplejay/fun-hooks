@@ -36,6 +36,8 @@ jobs:
             - sudo apt-get install libssl-dev
             - pushd $(shipctl get_resource_state hook-repo)
             - HOOK_META=$(shipctl get_resource_meta warmup)
+            - ls $HOOK_META
+            - cat $HOOK_META/version.json
             #- export response_url=$(shipctl get_resource_version_key warmup payload | jq '.response_url')
 
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "propertyBag.payload.response_url")
