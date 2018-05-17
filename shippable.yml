@@ -1,0 +1,54 @@
+resources:
+
+############################################
+# The basics. used in all jobs.
+############################################
+  - name: hook-repo
+    type: gitRepo
+    integration: github
+    versionTemplate:
+      sourceName: trriplejay/fun-hooks
+      branch: master
+      
+  - name: slack-creds
+    type: integration
+    integration: slack-keys
+
+##############################################
+# The hooks. one per job.
+##############################################
+  - name: translate
+    type: webhook
+    versionTemplate:
+      webhookKey: tCv4fhCogSqmyjmRgvuR
+      
+  - name: warmup
+    type: webhook
+    versionTemplate:
+      webhookKey: hAlQjJboj5ZALQENheQN
+
+
+jobs:
+  - name: execute-warmup
+    type: runSh
+    steps:
+      - IN: warmup
+      - IN: hook-repo
+        switch: off
+      - TASK:
+          script:
+            - pushd $(shipctl get_resource_state hook-repo)
+            - echo "machine is warm"
+            - sh respond.sh engines online
+        
+  - name: execute-translate
+    type: runSh
+    steps:
+      - IN: hook-repo
+        switch: off
+      - IN: translate
+      - TASK:
+          script:
+            - echo "translating..."
+            - RESULT=$(sh translate.sh)
+            - sh respond.sh $RESULT
