@@ -35,7 +35,7 @@ jobs:
           script:
             - pushd $(shipctl get_resource_state hook-repo)
             - HOOK_META=$(shipctl get_resource_meta warmup)
-            - export response_url=$(shipctl get_version_key warmup payload | jq '.response_url')
+            - export response_url=$(shipctl get_resource_version_key warmup payload | jq '.response_url')
             #- $(shipctl get_json_value "$HOOK_META/version.json" "propertyBag.payload.response_url")
             - sh respond.sh "engines online..."
     on_success:
