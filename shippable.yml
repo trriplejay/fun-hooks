@@ -56,7 +56,7 @@ jobs:
     steps:
       - IN: hook-repo
         switch: off
-      - IN: translate
+      - IN: ermahgerd
       - IN: pirate
       - TASK:
           script:
