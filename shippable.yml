@@ -36,12 +36,7 @@ jobs:
             - sudo apt-get install libssl-dev
             - pushd $(shipctl get_resource_state hook-repo)
             - HOOK_META=$(shipctl get_resource_meta warmup)
-            - ls $HOOK_META
-            - cat $HOOK_META/version.json
-            #- export response_url=$(shipctl get_resource_version_key warmup payload | jq '.response_url')
-
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - echo "$response_url"
             - sh respond.sh "engines online..."
     on_success:
       script:
@@ -60,5 +55,10 @@ jobs:
       - TASK:
           script:
             - echo "translating..."
-            - RESULT=$(sh translate.sh)
-            - sh respond.sh $RESULT
+            - pushd $(shipctl get_resource_state hook-repo)
+            - HOOK_META=$(shipctl get_resource_meta warmup)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - result=$(sh translate.sh)
+            - sh respond.sh "$user says $result"
