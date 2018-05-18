@@ -13,7 +13,12 @@ resources:
 ##############################################
 # The hooks. one per job.
 ##############################################
-  - name: translate
+  - name: ermahgerd
+    type: webhook
+    versionTemplate:
+      webhookKey: tCv4fhCogSqmyjmRgvuR
+
+  - name: pirate
     type: webhook
     versionTemplate:
       webhookKey: tCv4fhCogSqmyjmRgvuR
@@ -52,6 +57,7 @@ jobs:
       - IN: hook-repo
         switch: off
       - IN: translate
+      - IN: pirate
       - TASK:
           script:
             - echo "translating..."
