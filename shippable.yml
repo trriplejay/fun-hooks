@@ -66,5 +66,6 @@ jobs:
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
             - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
             - result=$(sh translate.sh)
             - sh respond.sh "$user says $result"

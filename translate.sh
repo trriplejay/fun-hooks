@@ -2,6 +2,7 @@
 
 
 api_url=http://api.funtranslations.com/translate/$JOB_TRIGGERED_BY_NAME.json
+echo "$api_url"
 
 curl -XPOST $api_url \
   -o output.json \
