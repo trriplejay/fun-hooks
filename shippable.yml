@@ -56,7 +56,7 @@ jobs:
           script:
             - echo "translating..."
             - pushd $(shipctl get_resource_state hook-repo)
-            - HOOK_META=$(shipctl get_resource_meta warmup)
+            - HOOK_META=$(shipctl get_resource_meta translate)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
             - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
