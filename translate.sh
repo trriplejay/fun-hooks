@@ -7,4 +7,4 @@ curl -XPOST $api_url \
   -o output.json \
   -d "text=$message"
 
-cat output.json | jq '.contents.translated'
+cat output.json | jq -r '.contents.translated'
