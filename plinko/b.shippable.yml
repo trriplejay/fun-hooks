@@ -1,0 +1,227 @@
+### row B, has 8 members
+
+jobs:
+  - name: B1
+    type: runSh
+    flags:
+      - plinko
+    dependencyMode: immediate
+    runtime:
+        nodePool: u14-dyna
+    steps:
+      - IN: A1
+      - IN: A2
+      - IN: reset
+      - TASK:
+          script:
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - echo "user is $user"
+            - echo "result is $result"
+            - if [ $result != "0" ]; then return 1; fi
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
+        - result=$($RANDOM % 2)
+        - shipctl put_resource_state $JOB_NAME result=$result
+
+
+  - name: B2
+    type: runSh
+    flags:
+      - plinko
+    dependencyMode: immediate
+    runtime:
+        nodePool: u14-dyna
+    steps:
+      - IN: A2
+      - IN: A3
+      - IN: reset
+      - TASK:
+          script:
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - echo "user is $user"
+            - echo "result is $result"
+            - if [ $result != "1" ]; then return 1; fi
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
+        - result=$($RANDOM % 2)
+        - shipctl put_resource_state $JOB_NAME result=$result
+
+- name: B3
+    type: runSh
+    flags:
+      - plinko
+    dependencyMode: immediate
+    runtime:
+        nodePool: u14-dyna
+    steps:
+      - IN: A3
+      - IN: A4
+      - IN: reset
+      - TASK:
+          script:
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - echo "user is $user"
+            - echo "result is $result"
+            - if [ $result != "0" ]; then return 1; fi
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
+        - result=$($RANDOM % 2)
+        - shipctl put_resource_state $JOB_NAME result=$result
+
+- name: B4
+    type: runSh
+    flags:
+      - plinko
+    dependencyMode: immediate
+    runtime:
+        nodePool: u14-dyna
+    steps:
+      - IN: A4
+      - IN: A5
+      - IN: reset
+      - TASK:
+          script:
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - echo "user is $user"
+            - echo "result is $result"
+            - if [ $result != "1" ]; then return 1; fi
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
+        - result=$($RANDOM % 2)
+        - shipctl put_resource_state $JOB_NAME result=$result
+
+- name: B5
+    type: runSh
+    flags:
+      - plinko
+    dependencyMode: immediate
+    runtime:
+        nodePool: u14-dyna
+    steps:
+      - IN: A5
+      - IN: A6
+      - IN: reset
+      - TASK:
+          script:
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - echo "user is $user"
+            - echo "result is $result"
+            - if [ $result != "0" ]; then return 1; fi
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
+        - result=$($RANDOM % 2)
+        - shipctl put_resource_state $JOB_NAME result=$result
+
+- name: B6
+    type: runSh
+    flags:
+      - plinko
+    dependencyMode: immediate
+    runtime:
+        nodePool: u14-dyna
+    steps:
+      - IN: A6
+      - IN: A7
+      - IN: reset
+      - TASK:
+          script:
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - echo "user is $user"
+            - echo "result is $result"
+            - if [ $result != "1" ]; then return 1; fi
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
+        - result=$($RANDOM % 2)
+        - shipctl put_resource_state $JOB_NAME result=$result
+
+- name: B7
+    type: runSh
+    flags:
+      - plinko
+    dependencyMode: immediate
+    runtime:
+        nodePool: u14-dyna
+    steps:
+      - IN: A7
+      - IN: A8
+      - IN: reset
+      - TASK:
+          script:
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - echo "user is $user"
+            - echo "result is $result"
+            - if [ $result != "0" ]; then return 1; fi
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
+        - result=$($RANDOM % 2)
+        - shipctl put_resource_state $JOB_NAME result=$result
+
+- name: B8
+    type: runSh
+    flags:
+      - plinko
+    dependencyMode: immediate
+    runtime:
+        nodePool: u14-dyna
+    steps:
+      - IN: A8
+      - IN: A9
+      - IN: reset
+      - TASK:
+          script:
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - echo "user is $user"
+            - echo "result is $result"
+            - if [ $result != "1" ]; then return 1; fi
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
+        - result=$($RANDOM % 2)
+        - shipctl put_resource_state $JOB_NAME result=$result
