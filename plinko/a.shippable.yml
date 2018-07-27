@@ -1,4 +1,4 @@
-mainTemplate: &meatTemplate
+mainTemplate: &mainTemplate
   - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
   - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
   - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
@@ -14,15 +14,7 @@ successTemplate: &successTemplate
   - shipctl put_resource_state $JOB_NAME result $result
 
 
-### only used in this first row
-resources:
-  - name: start
-    type: webhook
-    versionTemplate:
-      webhookKey: startplinko
-
-
-#### row A, the starting row
+#### row A, the first row
 jobs:
   - name: A1
     type: runSh
@@ -32,11 +24,11 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A1Trig
       - IN: reset
       - TASK:
           script:
-            - *meatTemplate
+            - *mainTemplate
 
     on_success:
       script:
@@ -50,18 +42,11 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A2Trig
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - *successTemplate
@@ -74,18 +59,11 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A3Trig
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - *successTemplate
@@ -98,18 +76,11 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A4Trig
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - *successTemplate
@@ -122,18 +93,11 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A5Trig
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - *successTemplate
@@ -146,18 +110,11 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A6Trig
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - *successTemplate
@@ -170,18 +127,11 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A7Trig
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - *successTemplate
@@ -194,18 +144,11 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A8Trig
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - *successTemplate
@@ -218,18 +161,68 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: start
+      - IN: A9Trig
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - *successTemplate
+
+
+#### triggering resources
+resources:
+  - name: A1Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A1Trig
+
+  - name: A2Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A2Trig
+
+  - name: A3Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A3Trig
+
+  - name: A4Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A4Trig
+
+  - name: A5Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A5Trig
+
+  - name: A6Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A6Trig
+
+  - name: A7Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A7Trig
+
+  - name: A8Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A8Trig
+
+  - name: A9Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A9Trig

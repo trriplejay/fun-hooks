@@ -1,5 +1,9 @@
 ### commonly used in all rows
 resources:
+  - name: start
+    type: webhook
+    versionTemplate:
+      webhookKey: startplinko
   - name: reset
     type: webhook
     versionTemplate:
@@ -18,6 +22,7 @@ jobs:
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
             - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - if [ -z "$message" ]; then message="A5"; fi
             - outguy="$message"Trig
       - OUT: A1Trig
       - OUT: A2Trig
@@ -28,6 +33,7 @@ jobs:
       - OUT: A7Trig
       - OUT: A8Trig
       - OUT: A9Trig
-    - on_success:
-        script:
-          - shipctl
+    on_success:
+      script:
+        - shipctl put_resource_state $outguy response_url "$response_url"
+        - shipctl put_resource_state $outguy user "$user"
