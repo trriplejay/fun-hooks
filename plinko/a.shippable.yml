@@ -1,11 +1,3 @@
-
-templates: &reset-template
-  - |
-    if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then
-      echo "resetting job to failed state"
-      return 1
-    fi
-
 ### only used in this first row
 resources:
   - name: start
@@ -28,7 +20,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -50,7 +42,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -72,7 +64,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -94,7 +86,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -116,7 +108,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -138,7 +130,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -160,7 +152,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -182,7 +174,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -204,7 +196,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - *reset-template
+            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
