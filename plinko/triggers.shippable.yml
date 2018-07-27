@@ -5,29 +5,29 @@ resources:
     versionTemplate:
       webhookKey: resetplinko
 
-# jobs:
-#   - name: start_job
-#     type: runSh
-#     flags:
-#       - plinko
-#     steps:
-#       - IN: start
-#       - TASK:
-#           script:
-#             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-#             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-#             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-#             - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-#             - outguy="$message"Trig
-#       - OUT: A1Trig
-#       - OUT: A2Trig
-#       - OUT: A3Trig
-#       - OUT: A4Trig
-#       - OUT: A5Trig
-#       - OUT: A6Trig
-#       - OUT: A7Trig
-#       - OUT: A8Trig
-#       - OUT: A9Trig
-#     - on_success:
-#         script:
-#           - shipctl
+jobs:
+  - name: start_job
+    type: runSh
+    flags:
+      - plinko
+    steps:
+      - IN: start
+      - TASK:
+          script:
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - outguy="$message"Trig
+      - OUT: A1Trig
+      - OUT: A2Trig
+      - OUT: A3Trig
+      - OUT: A4Trig
+      - OUT: A5Trig
+      - OUT: A6Trig
+      - OUT: A7Trig
+      - OUT: A8Trig
+      - OUT: A9Trig
+    - on_success:
+        script:
+          - shipctl

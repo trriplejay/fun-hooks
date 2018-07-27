@@ -11,7 +11,7 @@ successTemplate: &successTemplate
   - shipctl put_resource_state $JOB_NAME response_url "$response_url"
   - shipctl put_resource_state $JOB_NAME user "$user"
   - result=$($RANDOM % 2)
-  - shipctl put_resource_state $JOB_NAME result=$result
+  - shipctl put_resource_state $JOB_NAME result $result
 
 
 ### only used in this first row
