@@ -9,8 +9,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: A1
-      - IN: A2
+      - IN: B1
       - IN: reset
       - TASK:
           script:
@@ -38,8 +37,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: A2
-      - IN: A3
+      - IN: B2
       - IN: reset
       - TASK:
           script:
@@ -66,8 +64,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: A3
-      - IN: A4
+      - IN: B3
       - IN: reset
       - TASK:
           script:
@@ -94,8 +91,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: A4
-      - IN: A5
+      - IN: B4
       - IN: reset
       - TASK:
           script:
@@ -122,8 +118,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: A5
-      - IN: A6
+      - IN: B5
       - IN: reset
       - TASK:
           script:
@@ -150,8 +145,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: A6
-      - IN: A7
+      - IN: B6
       - IN: reset
       - TASK:
           script:
@@ -178,8 +172,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: A7
-      - IN: A8
+      - IN: B7
       - IN: reset
       - TASK:
           script:
@@ -206,8 +199,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: A8
-      - IN: A9
+      - IN: B8
       - IN: reset
       - TASK:
           script:
@@ -225,3 +217,59 @@ jobs:
         - shipctl put_resource_state $JOB_NAME user "$user"
         - result=$($RANDOM % 2)
         - shipctl put_resource_state $JOB_NAME result=$result
+
+#### triggering IN resources
+resources:
+  - name: B1Trig
+    type: params
+    versionTemplate:
+      params:
+        name: B1Trig
+
+  - name: B2Trig
+    type: params
+    versionTemplate:
+      params:
+        name: B2Trig
+
+  - name: B3Trig
+    type: params
+    versionTemplate:
+      params:
+        name: B3Trig
+
+  - name: B4Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A4Trig
+
+  - name: B5Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A5Trig
+
+  - name: B6Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A6Trig
+
+  - name: B7Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A7Trig
+
+  - name: B8Trig
+    type: params
+    versionTemplate:
+      params:
+        name: A8Trig
+
+  - name: B9Trig
+    type: params
+    versionTemplate:
+      params:
+        name: B9Trig

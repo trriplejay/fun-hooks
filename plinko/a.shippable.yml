@@ -1,17 +1,11 @@
 mainTemplate: &mainTemplate
   - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-  - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-  - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-  - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-  - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-  - echo "$JOB_TRIGGERED_BY_NAME"
-  - echo "message is $message"
-  - if [ "$message" != $JOB_NAME ]; then return 1; fi
+
 successTemplate: &successTemplate
-  - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-  - shipctl put_resource_state $JOB_NAME user "$user"
   - result=$($RANDOM % 2)
-  - shipctl put_resource_state $JOB_NAME result $result
+  - randomOut=outs[$result]
+  - shipctl put_resource_state $randomOut response_url "$response_url"
+  - shipctl put_resource_state $randomOut user "$user"
 
 
 #### row A, the first row
@@ -29,9 +23,11 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B1Trig
 
     on_success:
       script:
+        - outs=("B1Trig" "B1Trig")
         - *successTemplate
 
   - name: A2
@@ -47,8 +43,11 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B1Trig
+      - OUT: B2Trig
     on_success:
       script:
+        - outs=("B1Trig" "B2Trig")
         - *successTemplate
 
   - name: A3
@@ -64,8 +63,11 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B2Trig
+      - OUT: B3Trig
     on_success:
       script:
+        - outs=("B2Trig" "B3Trig")
         - *successTemplate
 
   - name: A4
@@ -81,8 +83,11 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B3Trig
+      - OUT: B4Trig
     on_success:
       script:
+        - outs=("B3Trig" "B4Trig")
         - *successTemplate
 
   - name: A5
@@ -98,8 +103,11 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B4Trig
+      - OUT: B5Trig
     on_success:
       script:
+        - outs=("B4Trig" "B5Trig")
         - *successTemplate
 
   - name: A6
@@ -115,8 +123,11 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B5Trig
+      - OUT: B6Trig
     on_success:
       script:
+        - outs=("B5Trig" "B6Trig")
         - *successTemplate
 
   - name: A7
@@ -132,8 +143,11 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B6Trig
+      - OUT: B7Trig
     on_success:
       script:
+        - outs=("B6Trig" "B7Trig")
         - *successTemplate
 
   - name: A8
@@ -149,8 +163,12 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B7Trig
+      - OUT: B8Trig
+
     on_success:
       script:
+        - outs=("B7Trig" "B8Trig")
         - *successTemplate
 
   - name: A9
@@ -166,12 +184,14 @@ jobs:
       - TASK:
           script:
             - *mainTemplate
+      - OUT: B8Trig
     on_success:
       script:
+        - outs=("B8Trig" "B8Trig")
         - *successTemplate
 
 
-#### triggering resources
+#### triggering IN resources
 resources:
   - name: A1Trig
     type: params

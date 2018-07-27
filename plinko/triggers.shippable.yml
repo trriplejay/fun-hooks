@@ -14,6 +14,8 @@ jobs:
     type: runSh
     flags:
       - plinko
+    runtime:
+      nodePool: u14-dyna
     steps:
       - IN: start
       - TASK:
@@ -25,7 +27,7 @@ jobs:
             - if [ -z "$message" ]; then echo "bad input $message"; return 1; fi
             - rand=$(($RANDOM % 9)) #0-8
             - let rand+=1 #1-9
-            - if [ "$message" == "random" ]; then message="A$rand"; fi
+            - if [ "$message" == "random" ]; then echo "randomly selected A$rand"; message="A$rand"; fi
             - outguy="$message"Trig
       - OUT: A1Trig
       - OUT: A2Trig
