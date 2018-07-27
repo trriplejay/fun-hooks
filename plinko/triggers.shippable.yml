@@ -1,0 +1,6 @@
+### commonly used in all rows
+resources:
+  - name: reset
+    type: webhook
+    versionTemplate:
+      webhookKey: resetplinko

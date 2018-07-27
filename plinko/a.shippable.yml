@@ -1,4 +1,11 @@
 
+### only used in this first row
+resources:
+  - name: start
+    type: webhook
+    versionTemplate:
+      webhookKey: startplinko
+
 
 #### row A, the starting row
 jobs:
