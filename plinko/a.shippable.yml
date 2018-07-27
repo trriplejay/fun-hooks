@@ -28,7 +28,10 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
 
   - name: A2
     type: runSh
@@ -50,7 +53,10 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
 
   - name: A3
     type: runSh
@@ -72,7 +78,10 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
 
   - name: A4
     type: runSh
@@ -94,7 +103,10 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
 
   - name: A5
     type: runSh
@@ -116,7 +128,10 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
 
   - name: A6
     type: runSh
@@ -138,7 +153,10 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
 
   - name: A7
     type: runSh
@@ -160,7 +178,10 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
 
   - name: A8
     type: runSh
@@ -182,7 +203,10 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
 
   - name: A9
     type: runSh
@@ -204,4 +228,7 @@ jobs:
             - echo "$JOB_TRIGGERED_BY_NAME"
             - echo "message is $message"
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
-            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+    on_success:
+      script:
+        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+        - shipctl put_resource_state $JOB_NAME user "$user"
