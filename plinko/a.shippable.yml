@@ -2,7 +2,7 @@ mainTemplate: &mainTemplate
   - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
 
 successTemplate: &successTemplate
-  - result=$($RANDOM % 2)
+  - result=$(($RANDOM % 2))
   - randomOut=outs[$result]
   - shipctl put_resource_state $randomOut response_url "$response_url"
   - shipctl put_resource_state $randomOut user "$user"
