@@ -1,3 +1,13 @@
+mainTemplate: &mainTemplate
+  - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+
+successTemplate: &successTemplate
+  - result=$(($RANDOM % 2))
+  - randomOut=${outs[$result]}
+  - echo "randomly bouncing to $randomOut"
+  - shipctl put_resource_state $randomOut response_url "$response_url"
+  - shipctl put_resource_state $randomOut user "$user"
+
 ### row B, has 8 members
 
 jobs:
@@ -13,14 +23,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - echo "user is $user"
-            - echo "result is $result"
-            - if [ $result != "0" ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - shipctl put_resource_state $JOB_NAME response_url "$response_url"
@@ -41,14 +44,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - echo "user is $user"
-            - echo "result is $result"
-            - if [ $result != "1" ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - shipctl put_resource_state $JOB_NAME response_url "$response_url"
@@ -68,14 +64,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - echo "user is $user"
-            - echo "result is $result"
-            - if [ $result != "0" ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - shipctl put_resource_state $JOB_NAME response_url "$response_url"
@@ -95,14 +84,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - echo "user is $user"
-            - echo "result is $result"
-            - if [ $result != "1" ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - shipctl put_resource_state $JOB_NAME response_url "$response_url"
@@ -122,14 +104,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - echo "user is $user"
-            - echo "result is $result"
-            - if [ $result != "0" ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - shipctl put_resource_state $JOB_NAME response_url "$response_url"
@@ -149,14 +124,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - echo "user is $user"
-            - echo "result is $result"
-            - if [ $result != "1" ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - shipctl put_resource_state $JOB_NAME response_url "$response_url"
@@ -176,14 +144,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - echo "user is $user"
-            - echo "result is $result"
-            - if [ $result != "0" ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - shipctl put_resource_state $JOB_NAME response_url "$response_url"
@@ -203,14 +164,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - source $(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)/$JOB_TRIGGERED_BY_NAME.env
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - echo "user is $user"
-            - echo "result is $result"
-            - if [ $result != "1" ]; then return 1; fi
+            - *mainTemplate
     on_success:
       script:
         - shipctl put_resource_state $JOB_NAME response_url "$response_url"
