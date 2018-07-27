@@ -1,0 +1,156 @@
+#### row A, the starting row
+
+
+jobs:
+  - name: A1
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+
+  - name: A2
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+
+  - name: A3
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+
+  - name: A4
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+
+  - name: A5
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+
+  - name: A6
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+
+  - name: A7
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+
+  - name: A8
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"
+
+  - name: A9
+    type: runSh
+    steps:
+      - IN: start
+      - IN: reset
+      - TASK:
+          script:
+            - sh checkReset.sh
+            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+            - echo "$JOB_TRIGGERED_BY_NAME"
+            - echo "message is $message"
+            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - shipctl put_resource_state_multi $JOB_NAME response_url "$response_url" user "$user"

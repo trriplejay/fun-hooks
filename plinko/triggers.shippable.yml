@@ -1,0 +1,10 @@
+resources:
+  - name: start
+    type: webhook
+    versionTemplate:
+      webhookKey: startplinko
+
+  - name: reset
+    type: webhook
+    versionTemplate:
+      webhookKey: resetplinko
