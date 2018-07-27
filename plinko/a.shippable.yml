@@ -1,3 +1,19 @@
+mainTemplate: &meatTemplate
+  - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
+  - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+  - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
+  - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
+  - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
+  - echo "$JOB_TRIGGERED_BY_NAME"
+  - echo "message is $message"
+  - if [ "$message" != $JOB_NAME ]; then return 1; fi
+successTemplate: &successTemplate
+  - shipctl put_resource_state $JOB_NAME response_url "$response_url"
+  - shipctl put_resource_state $JOB_NAME user "$user"
+  - result=$($RANDOM % 2)
+  - shipctl put_resource_state $JOB_NAME result=$result
+
+
 ### only used in this first row
 resources:
   - name: start
@@ -20,20 +36,11 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - if [ $JOB_TRIGGERED_BY_NAME == "reset" ]; then echo "resetting job to failed state"; return 1; fi
-            - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
-            - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
-            - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
-            - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - echo "$JOB_TRIGGERED_BY_NAME"
-            - echo "message is $message"
-            - if [ "$message" != $JOB_NAME ]; then return 1; fi
+            - *meatTemplate
+
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
-        - result=$($RANDOM % 2)
-        - shipctl put_resource_state $JOB_NAME result=$result
+        - *successTemplate
 
   - name: A2
     type: runSh
@@ -57,8 +64,7 @@ jobs:
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
+        - *successTemplate
 
   - name: A3
     type: runSh
@@ -82,8 +88,7 @@ jobs:
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
+        - *successTemplate
 
   - name: A4
     type: runSh
@@ -107,8 +112,7 @@ jobs:
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
+        - *successTemplate
 
   - name: A5
     type: runSh
@@ -132,8 +136,7 @@ jobs:
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
+        - *successTemplate
 
   - name: A6
     type: runSh
@@ -157,8 +160,7 @@ jobs:
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
+        - *successTemplate
 
   - name: A7
     type: runSh
@@ -182,8 +184,7 @@ jobs:
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
+        - *successTemplate
 
   - name: A8
     type: runSh
@@ -207,8 +208,7 @@ jobs:
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
+        - *successTemplate
 
   - name: A9
     type: runSh
@@ -232,5 +232,4 @@ jobs:
             - if [ "$message" != $JOB_NAME ]; then return 1; fi
     on_success:
       script:
-        - shipctl put_resource_state $JOB_NAME response_url "$response_url"
-        - shipctl put_resource_state $JOB_NAME user "$user"
+        - *successTemplate
