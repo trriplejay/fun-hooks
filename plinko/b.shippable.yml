@@ -58,7 +58,7 @@ jobs:
         - result=$($RANDOM % 2)
         - shipctl put_resource_state $JOB_NAME result=$result
 
-- name: B3
+  - name: B3
     type: runSh
     flags:
       - plinko
@@ -86,7 +86,7 @@ jobs:
         - result=$($RANDOM % 2)
         - shipctl put_resource_state $JOB_NAME result=$result
 
-- name: B4
+  - name: B4
     type: runSh
     flags:
       - plinko
@@ -114,7 +114,7 @@ jobs:
         - result=$($RANDOM % 2)
         - shipctl put_resource_state $JOB_NAME result=$result
 
-- name: B5
+  - name: B5
     type: runSh
     flags:
       - plinko
@@ -142,7 +142,7 @@ jobs:
         - result=$($RANDOM % 2)
         - shipctl put_resource_state $JOB_NAME result=$result
 
-- name: B6
+  - name: B6
     type: runSh
     flags:
       - plinko
@@ -170,7 +170,7 @@ jobs:
         - result=$($RANDOM % 2)
         - shipctl put_resource_state $JOB_NAME result=$result
 
-- name: B7
+  - name: B7
     type: runSh
     flags:
       - plinko
@@ -198,7 +198,7 @@ jobs:
         - result=$($RANDOM % 2)
         - shipctl put_resource_state $JOB_NAME result=$result
 
-- name: B8
+  - name: B8
     type: runSh
     flags:
       - plinko
