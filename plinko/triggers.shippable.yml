@@ -22,7 +22,10 @@ jobs:
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
             - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
-            - if [ -z "$message" ]; then message="A5"; fi
+            - if [ -z "$message" ]; then echo "bad input $message"; return 1; fi
+            - rand=$(($RANDOM % 9)) #0-8
+            - let rand+=1 #1-9
+            - if [ "$message" == "random" ]; then message="A$rand"; fi
             - outguy="$message"Trig
       - OUT: A1Trig
       - OUT: A2Trig
