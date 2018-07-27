@@ -9,7 +9,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: B1
+      - IN: B1Trig
       - IN: reset
       - TASK:
           script:
@@ -37,7 +37,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: B2
+      - IN: B2Trig
       - IN: reset
       - TASK:
           script:
@@ -64,7 +64,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: B3
+      - IN: B3Trig
       - IN: reset
       - TASK:
           script:
@@ -91,7 +91,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: B4
+      - IN: B4Trig
       - IN: reset
       - TASK:
           script:
@@ -118,7 +118,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: B5
+      - IN: B5Trig
       - IN: reset
       - TASK:
           script:
@@ -145,7 +145,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: B6
+      - IN: B6Trig
       - IN: reset
       - TASK:
           script:
@@ -172,7 +172,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: B7
+      - IN: B7Trig
       - IN: reset
       - TASK:
           script:
@@ -199,7 +199,7 @@ jobs:
     runtime:
         nodePool: u14-dyna
     steps:
-      - IN: B8
+      - IN: B8Trig
       - IN: reset
       - TASK:
           script:
