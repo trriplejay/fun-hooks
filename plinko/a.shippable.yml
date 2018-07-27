@@ -1,6 +1,6 @@
+
+
 #### row A, the starting row
-
-
 jobs:
   - name: A1
     type: runSh
@@ -14,7 +14,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -36,7 +36,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -58,7 +58,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -80,7 +80,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -102,7 +102,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -124,7 +124,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -146,7 +146,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -168,7 +168,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
@@ -190,7 +190,7 @@ jobs:
       - IN: reset
       - TASK:
           script:
-            - sh plinko/checkReset.sh
+            - *reset-template
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
