@@ -4,6 +4,7 @@ mainTemplate: &mainTemplate
 successTemplate: &successTemplate
   - result=$(($RANDOM % 2))
   - randomOut=outs[$result]
+  - echo "randomly bouncing to $randomOut"
   - shipctl put_resource_state $randomOut response_url "$response_url"
   - shipctl put_resource_state $randomOut user "$user"
 
