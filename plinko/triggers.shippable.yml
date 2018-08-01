@@ -21,6 +21,7 @@ jobs:
       - TASK:
           script:
             - HOOK_META=$(shipctl get_resource_meta $JOB_TRIGGERED_BY_NAME)
+            - cat $HOOK_META/version.json | jq '.'
             - export response_url=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.response_url")
             - export message=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.text")
             - export user=$(shipctl get_json_value "$HOOK_META/version.json" "version.propertyBag.payload.user_name")
